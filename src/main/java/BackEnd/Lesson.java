@@ -10,7 +10,13 @@ public class Lesson {
     private ArrayList<String> resources;   // for optional material you wanna add
 
     public Lesson(String lessonId, String title, String content) {
-        this.lessonId = lessonId;
+        if (lessonId.charAt(0)=='C' && lessonId.substring(1).matches("\\d+") && lessonId != null)
+        {
+            this.lessonId = lessonId;
+        }else {
+            lessonId = null;
+        }
+        
         this.title = title;
         this.content = content;
         this.resources = new ArrayList<>(); 

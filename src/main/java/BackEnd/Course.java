@@ -13,10 +13,22 @@ public class Course {
     private ArrayList<String> students;  
     
     public Course(String courseId, String title, String description, String instructorId) {
-        this.courseId = courseId;
+        if (courseId.charAt(0)=='C' && courseId.substring(1).matches("\\d+") && courseId != null )
+        {
+            this.courseId = courseId;
+        }else {
+            courseId = null ;
+        }
+        
         this.title = title;
         this.description = description;
-        this.instructorId = instructorId;
+        if (instructorId.charAt(0)=='I' && instructorId.substring(1).matches("\\d+") && instructorId != null)
+        {
+            this.instructorId = instructorId;
+        }else {
+            instructorId = null;
+        }
+        
         this.lessons = new ArrayList<>();
         this.students = new ArrayList<>();
     }
