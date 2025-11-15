@@ -10,6 +10,7 @@ package FrontEnd;
  */
 public class Course extends javax.swing.JPanel {
 
+    
     /**
      * Creates new form Course
      */
