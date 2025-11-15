@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 
 public class Lesson {
-    private int lessonId;
+    private String lessonId;
     private String title;
     private String content;
     private ArrayList<String> resources;   // for optional material you wanna add
 
-    public Lesson(int lessonId, String title, String content) {
+    public Lesson(String lessonId, String title, String content) {
         this.lessonId = lessonId;
         this.title = title;
         this.content = content;
@@ -20,11 +20,11 @@ public class Lesson {
         this.resources = new ArrayList<>();
     }
 
-    public int getLessonId() {
+    public String getLessonId() {
         return lessonId;
     }
 
-    public void setLessonId(int lessonId) {
+    public void setLessonId(String lessonId) {
         this.lessonId = lessonId;
     }
 

@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 
 public class Course {
-    private int courseId;
+    private String courseId;
     private String title;
     private String description;
-    private int instructorId;
+    private String instructorId;
 
     private ArrayList<Lesson> lessons;
-    private ArrayList<Integer> students;  
+    private ArrayList<String> students;  
     
-    public Course(int courseId, String title, String description, int instructorId) {
+    public Course(String courseId, String title, String description, String instructorId) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
@@ -25,11 +25,11 @@ public class Course {
         this.students = new ArrayList<>();
     }
 
-    public int getCourseId() {
+    public String getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
 
@@ -49,11 +49,11 @@ public class Course {
         this.description = description;
     }
 
-    public int getInstructorId() {
+    public String getInstructorId() {
         return instructorId;
     }
 
-    public void setInstructorId(int instructorId) {
+    public void setInstructorId(String instructorId) {
         this.instructorId = instructorId;
     }
 
@@ -61,7 +61,7 @@ public class Course {
         return lessons;
     }
 
-    public ArrayList<Integer> getStudents() {
+    public ArrayList<String> getStudents() {
         return students;
     }
 
@@ -70,26 +70,26 @@ public class Course {
         lessons.add(lesson);
     }
 
-    public void removeLesson(int lessonId) {
-        lessons.removeIf(l -> l.getLessonId() == lessonId);
+    public void removeLesson(String lessonId) {
+        lessons.removeIf(l -> l.getLessonId().equals(lessonId));
     }
 
-    public Lesson getLessonById(int lessonId) {
+    public Lesson getLessonById(String lessonId) {
         for (Lesson l : lessons) {
-            if (l.getLessonId() == lessonId)
+                if (l.getLessonId().equals(lessonId))
                 return l;
         }
         return null;
     }
 
   
-    public void enrollStudent(int studentUserId) {
+    public void enrollStudent(String studentUserId) {
         if (!students.contains(studentUserId)) {
             students.add(studentUserId);
         }
     }
 
-    public void removeStudent(int studentUserId) {
+    public void removeStudent(String studentUserId) {
         students.removeIf(id -> id == studentUserId);
     }
 
