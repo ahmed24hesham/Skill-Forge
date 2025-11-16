@@ -12,14 +12,17 @@ public class Srudent extends User {
         // Needed for Gson
     }
 
-    public Srudent( String username, String email, String passwordHash) {
-        IDGenerator idd = new IDGenerator();
-        super(idd.generateUserId(), "Student",
+    public Srudent(String username, String email, String passwordHash) {
+        // Generate ID
+        super(new IDGenerator().generateUserId(),
+              "Student",
               validateUsername(username),
               validateEmail(email),
-             sha256(passwordHash));
-            enrolledCourses = new ArrayList<>();
-    completedLessons = new ArrayList<>();
+              sha256(passwordHash));
+        
+        // Initialize lists
+        this.enrolledCourses = new ArrayList<>();
+        this.completedLessons = new ArrayList<>();
     }
 
     // ----------------- Validations -----------------
