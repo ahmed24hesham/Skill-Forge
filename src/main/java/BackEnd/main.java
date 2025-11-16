@@ -26,7 +26,7 @@ public class main {
         JsonDatabaseManager<Course> courseDB = new JsonDatabaseManager<>("courses.json", courseListType);
 
         Course c = new Course("C101" , "Math 101", "M101" , "I456");
-        i.add(c);
+//        i.add(c);
         
 //        courseDB.add(c); // adds to courses.json
     }

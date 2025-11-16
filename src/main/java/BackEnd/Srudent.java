@@ -4,8 +4,17 @@ public class Srudent extends User {
     private ArrayList<Integer> enrolledCourses = new ArrayList<>();
     private ArrayList<Integer> completedLessons = new ArrayList<>();
     public Srudent(String userId,String role, String username, String email, String passwordHash) {
+        
+           if (userId.charAt(0)=='S' && userId.substring(1).matches("\\d+") && userId != null )
+        {
+        userId=userId;
+        }
+           else {
+         userId=null;
+        }
         super(userId, "Student", validateUsername(username), validateEmail(email), passwordHash);
     }
+   
     private static String validateUsername(String username) {
         if (username == null || username.trim().isEmpty())
             username=null;
@@ -73,7 +82,3 @@ public class Srudent extends User {
         return (completed * 100) / total;
     }
 }
-
-
-
-
