@@ -21,8 +21,5 @@ public class PasswordHasher {
         }
     }
 
-    public static void main(String[] args) {
-        String text = "hello";
-        System.out.println("Hash: " + sha256(text));
-    }
+   
 }

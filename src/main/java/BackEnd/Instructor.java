@@ -1,5 +1,6 @@
 package BackEnd;
 
+import static BackEnd.PasswordHasher.sha256;
 import java.util.ArrayList;
 
 public class Instructor extends User {
@@ -15,7 +16,7 @@ public class Instructor extends User {
               "Instructor",
               validateUsername(username),
               validateEmail(email),
-              passwordHash);
+              sha256(passwordHash));
 
         courseDB = new CourseDB("courses.json"); // initialize DB
     }

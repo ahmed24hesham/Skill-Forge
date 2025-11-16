@@ -1,5 +1,6 @@
 package BackEnd;
 
+import static BackEnd.PasswordHasher.sha256;
 import java.util.ArrayList;
 
 public class Srudent extends User {
@@ -15,7 +16,7 @@ public class Srudent extends User {
         super(validateStudentId(userId), "Student",
               validateUsername(username),
               validateEmail(email),
-              passwordHash);
+             sha256(passwordHash));
             enrolledCourses = new ArrayList<>();
     completedLessons = new ArrayList<>();
     }
