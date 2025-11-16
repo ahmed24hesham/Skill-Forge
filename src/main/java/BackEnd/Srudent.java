@@ -1,16 +1,11 @@
 package BackEnd;
 
-//public class Srudent extends User {
-//
+public class Srudent extends User {
 
-    // getters and setters
+    public Srudent(String userId, String role, String username, String email, String passwordHash) {
+        super(userId, role, username, email, passwordHash);
+    }
 
-//    public Srudent(String username, String password) {
-//        super(username, password);
-//    }
-
-
-//    // getters and setters
-//}
+}
 
 
