@@ -1,20 +1,55 @@
 package BackEnd;
 
+import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class InstructorDB extends JsonDatabaseManager {
-public InstructorDB(String fileName, Type typeOfT) {
-        super(fileName, typeOfT);
+public class InstructorDB extends JsonDatabaseManager<Instructor> {
+
+    private com.google.gson.Gson gson = new com.google.gson.Gson();
+
+    public InstructorDB(String fileName) {
+        super(fileName, new TypeToken<ArrayList<Instructor>>() {}.getType());
     }
 
-    public void addInstructor(Instructor i){
-      ArrayList<Instructor> l = load();
-        for(User x : l){
-            if(x.getUsername().equals(i.getUsername())){
-                return;
-            }   
+    @Override
+    public ArrayList<Instructor> load() {
+        try (java.io.FileReader reader = new java.io.FileReader(fileName)) {
+            ArrayList<Instructor> list = gson.fromJson(reader, typeOfT);
+            return list != null ? list : new ArrayList<>();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        add(i);
+    }
+
+    @Override
+    public void save(ArrayList<Instructor> list) {
+        try (java.io.FileWriter writer = new java.io.FileWriter(fileName)) {
+            gson.toJson(list, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void add(Instructor instructor) {
+        ArrayList<Instructor> list = load();
+
+        // Prevent duplicate usernames
+        for (Instructor i : list) {
+            if (i.getUsername().trim().equalsIgnoreCase(instructor.getUsername().trim())) {
+                System.out.println("Duplicate username. Instructor not added.");
+                return;
+            }
+        }
+
+        list.add(instructor);
+        save(list);
+    }
+
+    // Optional semantic helper
+    public void addInstructor(Instructor instructor) {
+        add(instructor);
     }
 }

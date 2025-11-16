@@ -1,10 +1,13 @@
 package BackEnd;
+
 public abstract class User {
     protected String userId;
     protected String role;
     protected String username;
     protected String email;
     protected String passwordHash;
+
+    public User() { } // Required for Gson
 
     public User(String userId, String role, String username, String email, String passwordHash) {
         this.userId = userId;
@@ -13,6 +16,7 @@ public abstract class User {
         this.email = email;
         this.passwordHash = passwordHash;
     }
+
     public String getUserId() { return userId; }
     public String getRole() { return role; }
     public String getUsername() { return username; }

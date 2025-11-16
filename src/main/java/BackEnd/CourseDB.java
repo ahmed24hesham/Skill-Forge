@@ -1,30 +1,41 @@
 package BackEnd;
 
+import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class CourseDB extends JsonDatabaseManager{
+public class CourseDB extends JsonDatabaseManager<Course> {
 
-    public CourseDB(String fileName, Type typeOfT) {
-        super(fileName, typeOfT);
+    private com.google.gson.Gson gson = new com.google.gson.Gson();
+
+    public CourseDB(String fileName) {
+        super(fileName, new TypeToken<ArrayList<Course>>() {}.getType());
     }
-    public void addcourse(Course c){
-      ArrayList<Course> l = load();
-        for(Course x : l){
-            if(x.getCourseId().equals(c.getCourseId())){
-                return;
-            }   
+
+    @Override
+    public ArrayList<Course> load() {
+        try (java.io.FileReader reader = new java.io.FileReader(fileName)) {
+            ArrayList<Course> list = gson.fromJson(reader, typeOfT);
+            return list != null ? list : new ArrayList<>();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        add(c);
-    } 
-        public void remove(Course c){
-       ArrayList<Course> list = load();
-       for(Course st : list){
-           if(st.getCourseId().equals(c.getCourseId())){
-               list.remove(st);
-           }
-            System.out.println("5555555555");
-       save(list);
     }
+
+    @Override
+    public void save(ArrayList<Course> list) {
+        try (java.io.FileWriter writer = new java.io.FileWriter(fileName)) {
+            gson.toJson(list, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void add(Course obj) {
+        ArrayList<Course> list = load();
+        list.add(obj);
+        save(list);
     }
 }
