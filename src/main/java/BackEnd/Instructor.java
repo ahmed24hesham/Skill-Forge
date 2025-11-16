@@ -11,8 +11,9 @@ public class Instructor extends User {
         courseDB = new CourseDB("courses.json"); // needed for Gson
     }
 
-    public Instructor(String userId, String username, String email, String passwordHash) {
-        super(validateInstructorId(userId),
+    public Instructor( String username, String email, String passwordHash) {
+        IDGenerator idd = new IDGenerator();
+        super(idd.generateUserId(),
               "Instructor",
               validateUsername(username),
               validateEmail(email),

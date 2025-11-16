@@ -18,18 +18,23 @@ public class main {
         
         
         InstructorDB instructorDB = new InstructorDB("users.json");
-        Instructor i = new Instructor("U100","Dr. Smith", "hamo@gmail.com" , "password");
+        Instructor i = new Instructor("Dr. Smith", "hamo@gmail.com" , "password");
          instructorDB.addInstructor(i);
 
-//        Course c = new Course("C101" , "Math 101", "M101" , "I456");
-//        i.createCourse(c);
+        Course c = new Course("Math 101", "M101" , "I456");
+        i.createCourse(c);
         
         
         StudentDB studentDB = new StudentDB("users.json");
-        Srudent student1 = new Srudent("S100","Ahmed", "ahmed@333322.com", "A123");
+        Srudent student1 = new Srudent("Ahmed", "ahmed@333322.com", "A123");
+        
+        Srudent student11 = new Srudent("Ahmed", "ahmed@3lm33322.com", "A123");
+        Srudent student12 = new Srudent("Ahmedlol", "ahmed@3lm33322.com", "A123");
 //        student1.enrollCourse(101);
 //student1.completeLesson(1);
 studentDB.addStudent(student1);
+studentDB.addStudent(student11);
+studentDB.addStudent(student12);
 
 
 

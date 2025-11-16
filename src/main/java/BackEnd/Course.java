@@ -13,8 +13,9 @@ public class Course {
     private ArrayList<String> students;  
 
     // Constructor with validation
-    public Course(String courseId, String title, String description, String instructorId) {
-        this.courseId = validateCourseId(courseId);
+    public Course( String title, String description, String instructorId) {
+        IDGenerator idd= new IDGenerator();
+        this.courseId = idd.generateCourseId();
         this.title = title;
         this.description = description;
         this.instructorId = validateInstructorId(instructorId);

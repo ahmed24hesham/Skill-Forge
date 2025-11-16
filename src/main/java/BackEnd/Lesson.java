@@ -9,13 +9,11 @@ public class Lesson {
     private String content;
     private ArrayList<String> resources;   // for optional material you wanna add
 
-    public Lesson(String lessonId, String title, String content) {
-        if (lessonId.charAt(0)=='C' && lessonId.substring(1).matches("\\d+") && lessonId != null)
-        {
-            this.lessonId = lessonId;
-        }else {
-            lessonId = null;
-        }
+    public Lesson( String title, String content) {
+        IDGenerator idd = new IDGenerator();
+        
+            this.lessonId = idd.generateLessonId();
+        
         
         this.title = title;
         this.content = content;
