@@ -37,14 +37,14 @@ public class StudentDB extends JsonDatabaseManager<Srudent> {
     }
 
     @Override
-    public void add(Srudent student) {
+    public boolean add(Srudent student) {
         ArrayList<Srudent> list = load();
 
         // Prevent duplicate usernames
         for (Srudent s : list) {
             if (s.getUsername().trim().equalsIgnoreCase(student.getUsername().trim())) {
                 System.out.println("Duplicate username. Student not added.");
-                return;
+                return false;
             }
         }
 
@@ -55,14 +55,15 @@ public class StudentDB extends JsonDatabaseManager<Srudent> {
                              catch (Exception e) { return 100; }
                          })
                          .max().orElse(100) + 1;
-        student.userId = "S" + nextId;
+        student.userId = "U" + nextId;
 
         list.add(student);
         save(list);
         System.out.println("Student added: " + student.getUsername() + " with ID: " + student.getUserId());
+        return true;
     }
 
-    public void addStudent(Srudent s) {
-        add(s);
+    public boolean addStudent(Srudent s) {
+       return add(s);
     }
 }

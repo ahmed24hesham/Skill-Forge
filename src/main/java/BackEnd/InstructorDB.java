@@ -33,23 +33,23 @@ public class InstructorDB extends JsonDatabaseManager<Instructor> {
     }
 
     @Override
-    public void add(Instructor instructor) {
+    public boolean add(Instructor instructor) {
         ArrayList<Instructor> list = load();
-
         // Prevent duplicate usernames
         for (Instructor i : list) {
             if (i.getUsername().trim().equalsIgnoreCase(instructor.getUsername().trim())) {
                 System.out.println("Duplicate username. Instructor not added.");
-                return;
+                return false;
             }
         }
 
         list.add(instructor);
         save(list);
+        return true;
     }
 
     // Optional semantic helper
-    public void addInstructor(Instructor instructor) {
-        add(instructor);
+    public boolean addInstructor(Instructor instructor) {
+      return  add(instructor);
     }
 }

@@ -33,17 +33,18 @@ public class CourseDB extends JsonDatabaseManager<Course> {
     }
 
     @Override
-    public void add(Course obj) {
+    public boolean add(Course obj) {
         ArrayList<Course> list = load();
         for (Course i : list) {
             if (i.getTitle().trim().equalsIgnoreCase(obj.getTitle().trim())) {
                 System.out.println("Duplicate username. Instructor not added.");
-                return;
+                return false;
             }
         }
 
         list.add(obj);
         save(list);
+        return true;
     }
 
        
