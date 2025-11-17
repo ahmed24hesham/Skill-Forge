@@ -15,13 +15,12 @@ import javax.swing.JOptionPane;
  * @author Asus
  */
 public class LogIn extends javax.swing.JPanel {
-    private BackEnd.Instructor loggedInstructor;
 
     /**
      * Creates new form LogIn
      */
-    public LogIn(BackEnd.Instructor instr) {
-        this.loggedInstructor = instr;
+    public LogIn() {
+        
         initComponents();
                 ButtonGroup roleGroup = new ButtonGroup();
 roleGroup.add(instructorRadio);

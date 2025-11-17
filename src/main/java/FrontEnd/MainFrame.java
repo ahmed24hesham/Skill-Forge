@@ -31,7 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
         Instructor testinst = list.get(0);
 
         // Load the dashboard panel
-        InstructorDashBoard dashboard = new InstructorDashBoard(testinst);
+        InstructorDashBoard dashboard = new InstructorDashBoard(testinst.getUsername());
 
         // Replace frame content
         this.setContentPane(dashboard);
