@@ -15,11 +15,13 @@ import javax.swing.JOptionPane;
  * @author Asus
  */
 public class LogIn extends javax.swing.JPanel {
+    private BackEnd.Instructor loggedInstructor;
 
     /**
      * Creates new form LogIn
      */
-    public LogIn() {
+    public LogIn(BackEnd.Instructor instr) {
+        this.loggedInstructor = instr;
         initComponents();
                 ButtonGroup roleGroup = new ButtonGroup();
 roleGroup.add(instructorRadio);
@@ -61,6 +63,12 @@ studentRadio.setSelected(true); // default
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 0));
         jLabel2.setText("username");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 153, 0));
@@ -204,7 +212,7 @@ studentRadio.setSelected(true); // default
         else if(isInstructor){
            if(AuthInstructor(username,password,"Instructor")){
     MainFrame mainFrame = (MainFrame) SwingUtilities.getWindowAncestor(this);
-    mainFrame.setContentPane(new InstructorDashBoard());
+    mainFrame.setContentPane(new InstructorDashBoard(username));
     mainFrame.setSize(400, 400);
     mainFrame.setLocationRelativeTo(null); 
     mainFrame.revalidate();
@@ -249,6 +257,10 @@ studentRadio.setSelected(true); // default
         
         
     }//GEN-LAST:event_studentRadioActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
