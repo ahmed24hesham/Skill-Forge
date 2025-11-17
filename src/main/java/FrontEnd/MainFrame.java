@@ -5,6 +5,7 @@
 package FrontEnd;
 import BackEnd.*;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,15 +19,24 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
-    initComponents();
+    InstructorDB idb = new InstructorDB("users.json");
+        ArrayList<Instructor> list = idb.load();
 
-    LogIn loginPanel = new LogIn();  // your form
-    setContentPane(loginPanel);    
-    this.setLocationRelativeTo(null);
-// show it inside the frame
+        if (list.isEmpty()) {
+            System.out.println("❌ No instructors found in users.json!");
+            return;
+        }
 
-    revalidate();
-    repaint();
+        // Pick the first instructor in the database
+        Instructor testinst = list.get(0);
+
+        // Load the dashboard panel
+        InstructorDashBoard dashboard = new InstructorDashBoard(testinst);
+
+        // Replace frame content
+        this.setContentPane(dashboard);
+        this.pack();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -78,7 +88,8 @@ public class MainFrame extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainFrame().setVisible(true));
         
