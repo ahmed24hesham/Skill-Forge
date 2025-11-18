@@ -62,12 +62,16 @@ public InstructorDashBoard(String username ) {
     lessonList = new JList<>(lessonModel);
 
     // Add to panels created in NetBeans
-    LessonPanel.setLayout(new BorderLayout());
-    LessonPanel.add(new JScrollPane(courseList), BorderLayout.CENTER);
+//    LessonPanel.setLayout(new BorderLayout());
+//    LessonPanel.add(new JScrollPane(courseList), BorderLayout.CENTER);
+//
+//    LessonPanel.setLayout(new BorderLayout());
+//    LessonPanel.add(new JScrollPane(lessonList), BorderLayout.CENTER);
+coursePanel.setLayout(new BorderLayout());
+coursePanel.add(new JScrollPane(courseList), BorderLayout.CENTER);
 
-    LessonPanel.setLayout(new BorderLayout());
-    LessonPanel.add(new JScrollPane(lessonList), BorderLayout.CENTER);
-
+LessonPanel.setLayout(new BorderLayout());
+LessonPanel.add(new JScrollPane(lessonList), BorderLayout.CENTER);
     // When selecting a course → load lessons
     courseList.addListSelectionListener(e -> {
         selectedCourse = courseList.getSelectedValue();
@@ -82,7 +86,7 @@ private void loadCourses() {
     ArrayList<Course> list = courseDB.load();
 
     for (Course c : list) {
-        if (c.getInstructorId().equals(loggedInstructor)) {
+        if (c.getInstructorId().equals(this.loggedInstructor)) {
             courseModel.addElement(c);
         }
     }
@@ -140,10 +144,8 @@ private void loadLessons() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        coursePanel = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        LessonPanel = new javax.swing.JScrollPane();
+        coursePanel = new javax.swing.JPanel();
+        LessonPanel = new javax.swing.JPanel();
         create = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         edit = new javax.swing.JButton();
@@ -156,36 +158,26 @@ private void loadLessons() {
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(coursePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+        javax.swing.GroupLayout coursePanelLayout = new javax.swing.GroupLayout(coursePanel);
+        coursePanel.setLayout(coursePanelLayout);
+        coursePanelLayout.setHorizontalGroup(
+            coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(coursePanel))
+        coursePanelLayout.setVerticalGroup(
+            coursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LessonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout LessonPanelLayout = new javax.swing.GroupLayout(LessonPanel);
+        LessonPanel.setLayout(LessonPanelLayout);
+        LessonPanelLayout.setHorizontalGroup(
+            LessonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 383, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LessonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+        LessonPanelLayout.setVerticalGroup(
+            LessonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
 
         create.setText("Add Course ");
@@ -257,7 +249,7 @@ private void loadLessons() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(coursePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(create)
@@ -276,7 +268,7 @@ private void loadLessons() {
                         .addComponent(DeleteLesson)
                         .addGap(18, 18, 18)
                         .addComponent(btnRefreshLessons))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LessonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ViewEnrolledStudents)
                         .addGap(18, 18, 18)
@@ -287,8 +279,8 @@ private void loadLessons() {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LessonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(coursePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -320,7 +312,10 @@ String desc = JOptionPane.showInputDialog("Description:");
 if (title == null || title.isBlank()) return;
 
 Course c = new Course(title, desc, this.loggedInstructor);
-courseDB.add(c);
+for (Instructor i : list) {
+            if (i.getUsername().trim().equals(username)) {
+                i.createCourse(c);
+            }}
 loadCourses();
     }//GEN-LAST:event_createActionPerformed
 
@@ -464,16 +459,14 @@ loadLessons();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddLesson;
     private javax.swing.JButton DeleteLesson;
-    private javax.swing.JScrollPane LessonPanel;
+    private javax.swing.JPanel LessonPanel;
     private javax.swing.JButton ViewEnrolledStudents;
     private javax.swing.JButton btnRefreshCourses;
     private javax.swing.JButton btnRefreshLessons;
-    private javax.swing.JScrollPane coursePanel;
+    private javax.swing.JPanel coursePanel;
     private javax.swing.JButton create;
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
     private javax.swing.JButton editLesson;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@ public class Course {
         this.courseId = idd.generateCourseId();
         this.title = title;
         this.description = description;
-        this.instructorId = validateInstructorId(instructorId);
+        this.instructorId = instructorId;
 
         this.lessons = new ArrayList<>();
         this.students = new ArrayList<>();
@@ -36,11 +36,7 @@ public class Course {
         return null;
     }
 
-    // Validation: Instructor ID must start with I and digits
-    private static String validateInstructorId(String id) {
-        if (id != null && id.matches("I\\d+")) return id;
-        return null;
-    }
+   
 
     // Getters and setters
     public String getCourseId() { return courseId; }
@@ -53,7 +49,7 @@ public class Course {
     public void setDescription(String description) { this.description = description; }
 
     public String getInstructorId() { return instructorId; }
-    public void setInstructorId(String instructorId) { this.instructorId = validateInstructorId(instructorId); }
+    public void setInstructorId(String instructorId) { this.instructorId = instructorId; }
 
     public ArrayList<Lesson> getLessons() { return lessons; }
     public ArrayList<String> getStudents() { return students; }

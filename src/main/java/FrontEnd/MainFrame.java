@@ -19,25 +19,20 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
-    InstructorDB idb = new InstructorDB("users.json");
-        ArrayList<Instructor> list = idb.load();
+        
+        LogIn loginPanel = new LogIn();  // your form
+    setContentPane(loginPanel);    
+    this.setLocationRelativeTo(null);
+        
+        
+ 
 
-        if (list.isEmpty()) {
-            System.out.println("❌ No instructors found in users.json!");
-            return;
-        }
-
-        // Pick the first instructor in the database
-        Instructor testinst = list.get(0);
-
+       
+    }
         // Load the dashboard panel
-        InstructorDashBoard dashboard = new InstructorDashBoard(testinst.getUsername());
 
         // Replace frame content
-        this.setContentPane(dashboard);
-        this.pack();
-        this.setLocationRelativeTo(null);
-    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
